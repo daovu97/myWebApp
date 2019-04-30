@@ -2,7 +2,7 @@ var host = "m16.cloudmqtt.com";
 var port = 31210;
 var part = '';
 var clientId = "ClientID";
-var reconnectTimeout = 2000;
+var reconnectTimeout = 0;
 var subTemperature = "-1", subHumidity = "-1", subRelay1 = "-1", subRelay2 = "-1", subRelay3 = "-1", subRelay4 = "-1";
 var relayStatus1, relayStatus2, relayStatus3, relayStatus4;
 const qos = 0;
@@ -26,6 +26,7 @@ function doConnect() {
     // Called when the connection is made
     function onConnect() {
         console.log("Connected!");
+        doClick();
         client.subscribe("ESP/temperature");
         client.subscribe("ESP/humidity");
         client.subscribe("ESPg/RL1");
@@ -171,41 +172,64 @@ client.onMessageArrived = function (message) {
             relayStatus4 = false;
         }
     }
+
+
+}
+
+function doClick() {
+    document.getElementById("pubRelay1").onclick = function () {
+
+        if (relayStatus1) {
+
+            client.send("ESPn/RL1", "0", qos, false);
+        } else {
+
+            client.send("ESPn/RL1", "1", qos, false);
+        }
+
+    }
+
+    document.getElementById("pubRelay2").onclick = function () {
+
+        if (relayStatus2) {
+
+            client.send("ESPn/RL2", "0", qos, false);
+        } else {
+
+            client.send("ESPn/RL2", "1", qos, false);
+        }
+
+    }
+
+    document.getElementById("pubRelay3").onclick = function () {
+
+        if (relayStatus3) {
+
+            client.send("ESPn/RL3", "0", qos, false);
+        } else {
+
+            client.send("ESPn/RL3", "1", qos, false);
+        }
+
+    }
+
+    document.getElementById("pubRelay4").onclick = function () {
+
+        if (relayStatus4) {
+
+            client.send("ESPn/RL4", "0", qos, false);
+        } else {
+
+            client.send("ESPn/RL4", "1", qos, false);
+        }
+
+    }
+
+
 }
 
 
-    if (relayStatus1)
-        document.getElementById("pubRelay1").onclick = function () {
-            console.log("turn off");
-            client.send("ESPn/RL1", "0", qos, false);
-        }
-    else document.getElementById("pubRelay1").onclick = function () {
-        client.send("ESPn/RL1", "1", qos, false);
-    }
 
-    if (relayStatus2)
-        document.getElementById("pubRelay2").onclick = function () {
-            client.send("ESPn/RL2", "0", qos, false);
-        }
-    else document.getElementById("pubRelay2").onclick = function () {
-        client.send("ESPn/RL2", "1", qos, false);
-    }
-
-    if (relayStatus3)
-        document.getElementById("pubRelay3").onclick = function () {
-            client.send("ESPn/RL3", "0", qos, false);
-        }
-    else document.getElementById("pubRelay3").onclick = function () {
-        client.send("ESPn/RL3", "1", qos, false);
-    }
-
-    if (relayStatus4)
-        document.getElementById("pubRelay4").onclick = function () {
-            client.send("ESPn/RL4", "0", qos, false);
-        }
-    else document.getElementById("pubRelay4").onclick = function () {
-        client.send("ESPn/RL4", "1", qos, false);
-    }
 
 
 
