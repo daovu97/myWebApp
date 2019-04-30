@@ -1,0 +1,77 @@
+#login_div {
+    display: none;
+}
+
+#user_div {
+    display: none;
+    margin: auto;
+    align-items: center;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border-radius: 30px;
+    background: #fff;
+    padding: 30px 30px 20px 30px;
+    width: max-content;
+    -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+
+}
+
+
+#sensor {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+#temperaturesensor {
+    float: left;
+    height: fit-content;
+}
+
+#humiditysensor {
+
+    float: right;
+    margin-left: 100px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#controler {
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+#controler12 {
+    float: left;
+}
+
+#controler34 {
+    float: right;
+    margin-left: 30px;
+}
+.button{
+    margin-left: 38.4% ;
+    width: 100px;
+    margin-top: 30px;
+    background-color: #b54216;
+    height: 50px;
+    border-radius: 25px;
+    border-width: 0 ;
+    box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+    transition: 0.1s;
+    cursor:pointer;
+}
+.button:hover {
+    transform: scale(0.97, 0.97);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+.button:active{
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+
