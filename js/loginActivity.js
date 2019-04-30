@@ -29,6 +29,7 @@ function login() {
 }
 
 function logout() {
+    disconnectMqtt();
     firebase.auth().signOut();
 
 }

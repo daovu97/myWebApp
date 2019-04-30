@@ -41,6 +41,9 @@ function doConnect() {
     }
 
 }
+function disconnectMqtt(){
+    client.disconnect();
+}
 
 
 // set callback handlers
