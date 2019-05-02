@@ -52,17 +52,14 @@ function backLogin() {
 function sendEmail() {
 
     var userEmail = document.getElementById("fpusername").value;
-    firebase.auth().sendPasswordResetEmail(userEmail).then(()=> {window.alert('Password reset email sent, check your inbox.');}).catch(function (error) {
+    firebase.auth().sendPasswordResetEmail(userEmail).then(() => {
+        window.alert('Password reset email sent, check your inbox.');
+    }).catch(function (error) {
         // Handle Errors here.
         var errorMessage = error.message;
 
         window.alert("Error: " + errorMessage);
         // ...
     });
-
-
-
-
-
 
 }

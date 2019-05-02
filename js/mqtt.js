@@ -3,7 +3,12 @@ var port = 31210;
 var part = '';
 var clientId = "ClientID";
 var reconnectTimeout = 0;
-var subTemperature = "-1", subHumidity = "-1", subRelay1 = "-1", subRelay2 = "-1", subRelay3 = "-1", subRelay4 = "-1";
+var subTemperature = "-1",
+    subHumidity = "-1",
+    subRelay1 = "-1",
+    subRelay2 = "-1",
+    subRelay3 = "-1",
+    subRelay4 = "-1";
 var relayStatus1, relayStatus2, relayStatus3, relayStatus4;
 const qos = 0;
 
@@ -26,6 +31,10 @@ function doConnect() {
     // Called when the connection is made
     function onConnect() {
         console.log("Connected!");
+
+        document.getElementById("connectStatus").style.display = "block";
+        document.getElementById("connectStatus").innerText = "Server connected!!";
+        document.getElementById("connectStatus").style.color = "green";
         doClick();
         client.subscribe("ESP/temperature");
         client.subscribe("ESP/humidity");
@@ -35,13 +44,22 @@ function doConnect() {
         client.subscribe("ESPg/RL4");
     }
 
+    function doStatus() {
+
+
+    }
+
     function doFail(e) {
         console.log(e);
+        document.getElementById("connectStatus").style.display = "block";
+        document.getElementById("connectStatus").innerText = "not connect, check your Internet!";
+        document.getElementById("connectStatus").style.color = "red";
         setTimeout(doConnect, Number(reconnectTimeout));
     }
 
 }
-function disconnectMqtt(){
+
+function disconnectMqtt() {
     client.disconnect();
 }
 
@@ -49,6 +67,9 @@ function disconnectMqtt(){
 // set callback handlers
 client.onConnectionLost = function (responseObject) {
     console.log("Connection Lost: " + responseObject.errorMessage);
+    document.getElementById("connectStatus").style.display = "block";
+    document.getElementById("connectStatus").innerText = "Disconnected! Wait to connect.....";
+    document.getElementById("connectStatus").style.color = "red";
     setTimeout(doConnect, Number(reconnectTimeout));
 }
 
@@ -56,70 +77,76 @@ client.onMessageArrived = function (message) {
     var flagHum, flagTem, flagRL1, flagRL2, flagRL3, flagRL4;
     switch (message.destinationName) {
 
-        case "ESP/temperature": {
-            if (message.payloadString === subTemperature) {
-                flagTem = false;
-            } else {
-                subTemperature = message.payloadString;
-                flagTem = true;
+        case "ESP/temperature":
+            {
+                if (message.payloadString === subTemperature) {
+                    flagTem = false;
+                } else {
+                    subTemperature = message.payloadString;
+                    flagTem = true;
+                }
             }
-        }
             break;
-        case "ESP/humidity": {
+        case "ESP/humidity":
+            {
 
-            if (message.payloadString === subHumidity) {
-                flagHum = false;
-            } else {
-                subHumidity = message.payloadString;
-                flagHum = true;
+                if (message.payloadString === subHumidity) {
+                    flagHum = false;
+                } else {
+                    subHumidity = message.payloadString;
+                    flagHum = true;
+                }
             }
-        }
             break;
 
-        case "ESPg/RL1": {
+        case "ESPg/RL1":
+            {
 
-            if (message.payloadString === subRelay1) {
-                flagRL1 = false;
-            } else {
-                subRelay1 = message.payloadString;
-                flagRL1 = true;
+                if (message.payloadString === subRelay1) {
+                    flagRL1 = false;
+                } else {
+                    subRelay1 = message.payloadString;
+                    flagRL1 = true;
+                }
             }
-        }
             break;
-        case "ESPg/RL2": {
+        case "ESPg/RL2":
+            {
 
-            if (message.payloadString === subRelay2) {
-                flagRL2 = false;
-            } else {
-                subRelay2 = message.payloadString;
-                flagRL2 = true;
+                if (message.payloadString === subRelay2) {
+                    flagRL2 = false;
+                } else {
+                    subRelay2 = message.payloadString;
+                    flagRL2 = true;
+                }
             }
-        }
             break;
-        case "ESPg/RL3": {
+        case "ESPg/RL3":
+            {
 
-            if (message.payloadString === subRelay3) {
-                flagRL3 = false;
-            } else {
-                subRelay3 = message.payloadString;
-                flagRL3 = true;
+                if (message.payloadString === subRelay3) {
+                    flagRL3 = false;
+                } else {
+                    subRelay3 = message.payloadString;
+                    flagRL3 = true;
+                }
             }
-        }
             break;
-        case "ESPg/RL4": {
+        case "ESPg/RL4":
+            {
 
-            if (message.payloadString === subRelay4) {
-                flagRL4 = false;
-            } else {
-                subRelay4 = message.payloadString;
-                flagRL4 = true;
+                if (message.payloadString === subRelay4) {
+                    flagRL4 = false;
+                } else {
+                    subRelay4 = message.payloadString;
+                    flagRL4 = true;
+                }
             }
-        }
             break;
     }
 
     if (flagTem) {
-        document.getElementById("progressTem").className = "c100 p" + message.payloadString + " orange";
+        document.getElementById("progressTem").className = "c100 p" + (message.payloadString-5) + " orange";
         document.getElementById("temNumber").innerText = message.payloadString + "°C";
     }
 
@@ -230,15 +257,3 @@ function doClick() {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
