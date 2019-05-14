@@ -3,6 +3,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("user_div").style.display = "block";
         document.getElementById("login_div").style.display = "none";
         document.getElementById("resetPassword_div").style.display = "none";
+        document.getElementById("signup_div").style.display = "none";
         doConnect();
     } else {
         // No user is signed in.
@@ -10,6 +11,7 @@ firebase.auth().onAuthStateChanged(function (user) {
         document.getElementById("user_div").style.display = "none";
         document.getElementById("login_div").style.display = "block";
         document.getElementById("resetPassword_div").style.display = "none";
+        document.getElementById("signup_div").style.display = "none";
     }
 });
 
@@ -28,24 +30,39 @@ function login() {
 
 }
 
-function logout() {
-    disconnectMqtt();
-    firebase.auth().signOut();
+function signup() {
+    var userEmail = document.getElementById("signUpUsername").value;
+    var userPassword = document.getElementById("signUpPassword").value;
+    var signupCode = document.getElementById("signUpcode").value;
 
-}
+    var docRef = db.collection("user").doc(signupCode);
 
-function forgotPassword() {
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "none";
-    document.getElementById("resetPassword_div").style.display = "block";
+    docRef.get().then(function (doc) {
+        if (doc.exists) {
+            var numberDevides = doc.data().devices;
 
-}
 
-function backLogin() {
+            firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).then(() => {
 
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
-    document.getElementById("resetPassword_div").style.display = "none";
+                window.alert('acc created');
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+
+                window.alert("Error: " + errorMessage);
+                // ...
+            });
+
+
+
+        } else {
+            // doc.data() will be undefined in this case
+            window.alert("User code does not match, Please retype user code");
+        }
+    }).catch(function (error) {
+        console.log("Error getting document:", error);
+    });
 
 }
 
@@ -61,5 +78,46 @@ function sendEmail() {
         window.alert("Error: " + errorMessage);
         // ...
     });
+
+}
+
+function logout() {
+    disconnectMqtt();
+    firebase.auth().signOut();
+
+}
+
+function forgotPassword() {
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "none";
+    document.getElementById("resetPassword_div").style.display = "block";
+    document.getElementById("signup_div").style.display = "none";
+
+}
+
+function backLogin() {
+
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+    document.getElementById("resetPassword_div").style.display = "none";
+    document.getElementById("signup_div").style.display = "none";
+
+}
+
+function signupLayout() {
+
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "none";
+    document.getElementById("resetPassword_div").style.display = "none";
+    document.getElementById("signup_div").style.display = "block";
+
+}
+
+function signinLayout() {
+
+    document.getElementById("user_div").style.display = "none";
+    document.getElementById("login_div").style.display = "block";
+    document.getElementById("resetPassword_div").style.display = "none";
+    document.getElementById("signup_div").style.display = "none";
 
 }

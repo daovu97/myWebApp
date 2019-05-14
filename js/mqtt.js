@@ -2,6 +2,8 @@ var host = "m16.cloudmqtt.com";
 var port = 31210;
 var part = '';
 var clientId = "ClientID";
+
+
 var reconnectTimeout = 0;
 var subTemperature = "-1",
     subHumidity = "-1",
@@ -23,7 +25,8 @@ function doConnect() {
         onSuccess: onConnect,
         useSSL: true,
         userName: "ubukzoam",
-        password: "MKTzzWJI6wHS",
+        password: "DK3eXPuJwnao",
+       
         onFailure: doFail
 
     });
@@ -146,7 +149,7 @@ client.onMessageArrived = function (message) {
     }
 
     if (flagTem) {
-        document.getElementById("progressTem").className = "c100 p" + (message.payloadString-5) + " orange";
+        document.getElementById("progressTem").className = "c100 p" + (message.payloadString - 5) + " orange";
         document.getElementById("temNumber").innerText = message.payloadString + "°C";
     }
 

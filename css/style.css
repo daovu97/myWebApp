@@ -2,6 +2,10 @@
     display: none;
 }
 
+#signup_div{
+    display: none;
+}
+
 #user_div {
     display: none;
     margin: auto;

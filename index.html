@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="css/circle.css">
     <link rel="stylesheet" href="css/card.css">
     <link rel="stylesheet" href="css/loginstyle.css">
-    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
 
 
 </head>
@@ -43,7 +44,8 @@
         <div id="login_div" class="wrapper fadeInDown">
             <div id="Content" class="formContent">
                 <!-- Tabs Titles -->
-                <h2 class="active"> Sign In </h2>
+                <h2 class="pointer active"> Sign In </h2>
+                <h2 class="pointer underlineHover" href="#" onclick="signupLayout()"> Sign Up </h2>
 
                 <!-- Icon -->
                 <div class="fadeIn first">
@@ -54,7 +56,33 @@
                 <form>
                     <input type="text" id="username" class="fadeIn second" placeholder="email">
                     <input type="Password" id="password" class="fadeIn third" placeholder="password">
-                    <input type="button" value="Log In" onclick="login()">
+                    <input type="button" value="Log In" onclick="login()" class="pointer">
+                </form>
+
+                <!-- Remind Passowrd -->
+                <div id="formFooter">
+                    <a class="underlineHover" href="#" onclick="forgotPassword()">Forgot Password?</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="signup_div" class="wrapper">
+            <div id="Content" class="formContent">
+                <!-- Tabs Titles -->
+                <h2 class="pointer underlineHover" href="#" onclick="signinLayout()"> Sign In </h2>
+                <h2 class="pointer active"> Sign Up </h2>
+                <!-- Icon -->
+                <div class="">
+                    <img src="img/icon_home.png" id="icon" />
+                </div>
+
+                <!-- Login Form -->
+                <form>
+                    <input type="text" id="signUpUsername" class="" placeholder="email">
+                    <input type="Password" id="signUpPassword" class="" placeholder="password">
+                    <input type="text" id="signUpcode" class="" placeholder="code number">
+                    <input type="button" value="Sign Up" onclick="signup()" class="pointer">
                 </form>
 
                 <!-- Remind Passowrd -->
@@ -169,6 +197,7 @@
             messagingSenderId: "335766037264"
         };
         firebase.initializeApp(config);
+        var db = firebase.firestore();
     </script>
     <script src="js/loginActivity.js" type="text/javascript"></script>
 
