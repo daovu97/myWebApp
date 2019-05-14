@@ -3,8 +3,7 @@ var port = 31210;
 var part = '';
 var clientId = "ClientID";
 
-
-var reconnectTimeout = 0;
+var reconnectTimeout = 2;
 var subTemperature = "-1",
     subHumidity = "-1",
     subRelay1 = "-1",
@@ -26,7 +25,6 @@ function doConnect() {
         useSSL: true,
         userName: "ubukzoam",
         password: "DK3eXPuJwnao",
-       
         onFailure: doFail
 
     });

@@ -13,8 +13,6 @@
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-firestore.js"></script>
-
-
 </head>
 
 <body>
@@ -33,8 +31,8 @@
                 <!-- Login Form -->
                 <form>
                     <input type="text" id="fpusername" class="fadeIn second" placeholder="email">
-                    <input type="button" value="Reset Password" onclick="sendEmail()">
-                    <input type="button" value="Back<" onclick="backLogin()">
+                    <input type="button" value="Reset Password" onclick="sendEmail()" class="pointer fadeIn second">
+                    <input type="button" value="Back <<" onclick="backLogin()" class="pointer fadeIn second">
                 </form>
 
 
@@ -56,12 +54,12 @@
                 <form>
                     <input type="text" id="username" class="fadeIn second" placeholder="email">
                     <input type="Password" id="password" class="fadeIn third" placeholder="password">
-                    <input type="button" value="Log In" onclick="login()" class="pointer">
+                    <input type="button" value="Log In" onclick="login()" class="pointer fadeIn second">
                 </form>
 
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    <a class="underlineHover" href="#" onclick="forgotPassword()">Forgot Password?</a>
+                    <a class="underlineHover fadeIn second" href="#" onclick="forgotPassword()">Forgot Password?</a>
                 </div>
 
             </div>
@@ -79,15 +77,15 @@
 
                 <!-- Login Form -->
                 <form>
-                    <input type="text" id="signUpUsername" class="" placeholder="email">
-                    <input type="Password" id="signUpPassword" class="" placeholder="password">
-                    <input type="text" id="signUpcode" class="" placeholder="code number">
-                    <input type="button" value="Sign Up" onclick="signup()" class="pointer">
+                    <input type="text" id="signUpUsername" class="fadeIn first" placeholder="email">
+                    <input type="Password" id="signUpPassword" class="fadeIn first" placeholder="password">
+                    <input type="text" id="signUpcode" class="fadeIn first" placeholder="code number">
+                    <input type="button" value="Sign Up" onclick="signup()" class="pointer fadeIn first">
                 </form>
 
                 <!-- Remind Passowrd -->
                 <div id="formFooter">
-                    <a class="underlineHover" href="#" onclick="forgotPassword()">Forgot Password?</a>
+                    <a class="underlineHover fadeIn first" href="#" onclick="forgotPassword()">Forgot Password?</a>
                 </div>
 
             </div>
