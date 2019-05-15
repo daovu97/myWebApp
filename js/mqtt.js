@@ -3,6 +3,8 @@ const port = 31210;
 const part = '';
 const clientId = "Web_cliend";
 const qos = 0;
+const user = "ubukzoam";
+const pass = "DK3eXPuJwnao";
 
 const reconnectTimeout = 1;
 var subTemperature = "-1",
@@ -23,8 +25,8 @@ function doConnect() {
         onSuccess: onConnect,
         useSSL: true,
         clearsection: true,
-        userName: "ubukzoam",
-        password: "DK3eXPuJwnao",
+        userName: user,
+        password: pass,
         onFailure: doFail
 
     });
@@ -36,18 +38,15 @@ function doConnect() {
         document.getElementById("connectStatus").style.display = "block";
         document.getElementById("connectStatus").innerText = "Server connected!!";
         document.getElementById("connectStatus").style.color = "green";
+
         doClick();
+
         client.subscribe("ESP/temperature");
         client.subscribe("ESP/humidity");
         client.subscribe("ESPg/RL1");
         client.subscribe("ESPg/RL2");
         client.subscribe("ESPg/RL3");
         client.subscribe("ESPg/RL4");
-    }
-
-    function doStatus() {
-
-
     }
 
     function doFail(e) {
