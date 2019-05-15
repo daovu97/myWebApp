@@ -79,6 +79,7 @@ client.onMessageArrived = function (message) {
     switch (message.destinationName) {
 
         case "ESP/temperature": {
+
             if (message.payloadString === subTemperature) {
                 flagTem = false;
             } else {
@@ -197,7 +198,6 @@ client.onMessageArrived = function (message) {
             relayStatus4 = false;
         }
     }
-
 
 }
 
