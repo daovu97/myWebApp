@@ -5,6 +5,7 @@ const clientId = "Web_cliend";
 const qos = 0;
 const user = "ubukzoam";
 const pass = "DK3eXPuJwnao";
+var flag = false;
 
 const reconnectTimeout = 1;
 var subTemperature = "-1",
@@ -74,7 +75,18 @@ client.onConnectionLost = function (responseObject) {
     setTimeout(doConnect, Number(reconnectTimeout));
 }
 
+
+document.getElementById("sensor").style.display = "none";
+document.getElementById("controler").style.display = "none";
+document.getElementById("device").style.display = "block";
+
+
+
 client.onMessageArrived = function (message) {
+
+
+
+
     let flagHum, flagTem, flagRL1, flagRL2, flagRL3, flagRL4;
     switch (message.destinationName) {
 
@@ -152,6 +164,10 @@ client.onMessageArrived = function (message) {
     }
 
     if (flagRL1) {
+        document.getElementById("sensor").style.display = "block";
+        document.getElementById("controler").style.display = "block";
+        document.getElementById("device").style.display = "none";
+
         if (subRelay1 === "1") {
             document.getElementById("relay1img").src = "img/light_on.png";
             document.getElementById("rl1status").innerText = "ON";
@@ -201,6 +217,9 @@ client.onMessageArrived = function (message) {
 
 
 }
+
+
+
 
 function doClick() {
     document.getElementById("pubRelay1").onclick = function () {

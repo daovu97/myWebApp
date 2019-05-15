@@ -40,8 +40,6 @@ function signup() {
     docRef.get().then(function (doc) {
         if (doc.exists) {
             var numberDevides = doc.data().devices;
-
-
             firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).then(() => {
 
                 window.alert('acc created');
