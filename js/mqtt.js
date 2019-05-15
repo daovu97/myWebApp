@@ -49,6 +49,8 @@ function doConnect() {
         client.subscribe("ESPg/RL4");
     }
 
+
+
     function doFail(e) {
         console.log(e);
         document.getElementById("connectStatus").style.display = "block";
@@ -197,6 +199,7 @@ client.onMessageArrived = function (message) {
             relayStatus4 = false;
         }
     }
+
 
 }
 
