@@ -161,11 +161,13 @@ client.onMessageArrived = function (message) {
     if (flagTem) {
         document.getElementById("progressTem").className = "c100 p" + (message.payloadString - 5) + " orange";
         document.getElementById("temNumber").innerText = message.payloadString + "°C";
+        flagTem=false;
     }
 
     if (flagHum) {
         document.getElementById("progressHum").className = "c100 p" + message.payloadString + " green";
         document.getElementById("humNumber").innerText = message.payloadString + "%";
+        flagHum=false;
     }
 
     if (flagRL1) {
