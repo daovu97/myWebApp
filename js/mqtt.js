@@ -1,10 +1,10 @@
 const host = "m16.cloudmqtt.com";
 const port = 31210;
 const part = '';
-const clientId = "ClientID";
+const clientId = "Web_cliend";
 const qos = 0;
 
-var reconnectTimeout = 2;
+const reconnectTimeout = 1;
 var subTemperature = "-1",
     subHumidity = "-1",
     subRelay1 = "-1",
@@ -13,17 +13,16 @@ var subTemperature = "-1",
     subRelay4 = "-1";
 var relayStatus1, relayStatus2, relayStatus3, relayStatus4;
 
-
 var client = new Paho.MQTT.Client(host, Number(port), part, clientId);
 
 function doConnect() {
-
 
     // Connect the client, providing an onConnect callback
     client.connect({
         timeout: 3,
         onSuccess: onConnect,
         useSSL: true,
+        clearsection: true,
         userName: "ubukzoam",
         password: "DK3eXPuJwnao",
         onFailure: doFail
