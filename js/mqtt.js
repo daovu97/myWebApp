@@ -1,7 +1,8 @@
-var host = "m16.cloudmqtt.com";
-var port = 31210;
-var part = '';
-var clientId = "ClientID";
+const host = "m16.cloudmqtt.com";
+const port = 31210;
+const part = '';
+const clientId = "ClientID";
+const qos = 0;
 
 var reconnectTimeout = 2;
 var subTemperature = "-1",
@@ -11,9 +12,9 @@ var subTemperature = "-1",
     subRelay3 = "-1",
     subRelay4 = "-1";
 var relayStatus1, relayStatus2, relayStatus3, relayStatus4;
-const qos = 0;
 
-let client = new Paho.MQTT.Client(host, Number(port), part, clientId);
+
+var client = new Paho.MQTT.Client(host, Number(port), part, clientId);
 
 function doConnect() {
 
@@ -75,75 +76,69 @@ client.onConnectionLost = function (responseObject) {
 }
 
 client.onMessageArrived = function (message) {
-    var flagHum, flagTem, flagRL1, flagRL2, flagRL3, flagRL4;
+    let flagHum, flagTem, flagRL1, flagRL2, flagRL3, flagRL4;
     switch (message.destinationName) {
 
-        case "ESP/temperature":
-            {
-                if (message.payloadString === subTemperature) {
-                    flagTem = false;
-                } else {
-                    subTemperature = message.payloadString;
-                    flagTem = true;
-                }
+        case "ESP/temperature": {
+            if (message.payloadString === subTemperature) {
+                flagTem = false;
+            } else {
+                subTemperature = message.payloadString;
+                flagTem = true;
             }
-            break;
-        case "ESP/humidity":
-            {
+        }
+        break;
+    case "ESP/humidity": {
 
-                if (message.payloadString === subHumidity) {
-                    flagHum = false;
-                } else {
-                    subHumidity = message.payloadString;
-                    flagHum = true;
-                }
-            }
-            break;
+        if (message.payloadString === subHumidity) {
+            flagHum = false;
+        } else {
+            subHumidity = message.payloadString;
+            flagHum = true;
+        }
+    }
+    break;
 
-        case "ESPg/RL1":
-            {
+    case "ESPg/RL1": {
 
-                if (message.payloadString === subRelay1) {
-                    flagRL1 = false;
-                } else {
-                    subRelay1 = message.payloadString;
-                    flagRL1 = true;
-                }
-            }
-            break;
-        case "ESPg/RL2":
-            {
+        if (message.payloadString === subRelay1) {
+            flagRL1 = false;
+        } else {
+            subRelay1 = message.payloadString;
+            flagRL1 = true;
+        }
+    }
+    break;
+    case "ESPg/RL2": {
 
-                if (message.payloadString === subRelay2) {
-                    flagRL2 = false;
-                } else {
-                    subRelay2 = message.payloadString;
-                    flagRL2 = true;
-                }
-            }
-            break;
-        case "ESPg/RL3":
-            {
+        if (message.payloadString === subRelay2) {
+            flagRL2 = false;
+        } else {
+            subRelay2 = message.payloadString;
+            flagRL2 = true;
+        }
+    }
+    break;
+    case "ESPg/RL3": {
 
-                if (message.payloadString === subRelay3) {
-                    flagRL3 = false;
-                } else {
-                    subRelay3 = message.payloadString;
-                    flagRL3 = true;
-                }
-            }
-            break;
-        case "ESPg/RL4":
-            {
+        if (message.payloadString === subRelay3) {
+            flagRL3 = false;
+        } else {
+            subRelay3 = message.payloadString;
+            flagRL3 = true;
+        }
+    }
+    break;
+    case "ESPg/RL4": {
 
-                if (message.payloadString === subRelay4) {
-                    flagRL4 = false;
-                } else {
-                    subRelay4 = message.payloadString;
-                    flagRL4 = true;
-                }
-            }
-            break;
+        if (message.payloadString === subRelay4) {
+            flagRL4 = false;
+        } else {
+            subRelay4 = message.payloadString;
+            flagRL4 = true;
+        }
+    }
+    break;
     }
 
     if (flagTem) {
