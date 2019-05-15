@@ -5,7 +5,7 @@ const clientId = "Web_cliend";
 const qos = 0;
 const user = "ubukzoam";
 const pass = "DK3eXPuJwnao";
-var flag = false;
+var flag = true;
 
 const reconnectTimeout = 1;
 var subTemperature = "-1",
@@ -83,11 +83,16 @@ document.getElementById("device").style.display = "block";
 
 
 client.onMessageArrived = function (message) {
-
-
-
+    if(flag){
+    document.getElementById("sensor").style.display = "block";
+    document.getElementById("controler").style.display = "block";
+    document.getElementById("device").style.display = "none";
+    flag = false;
+    }
+  
 
     let flagHum, flagTem, flagRL1, flagRL2, flagRL3, flagRL4;
+
     switch (message.destinationName) {
 
         case "ESP/temperature": {
@@ -164,18 +169,17 @@ client.onMessageArrived = function (message) {
     }
 
     if (flagRL1) {
-        document.getElementById("sensor").style.display = "block";
-        document.getElementById("controler").style.display = "block";
-        document.getElementById("device").style.display = "none";
 
         if (subRelay1 === "1") {
             document.getElementById("relay1img").src = "img/light_on.png";
             document.getElementById("rl1status").innerText = "ON";
             relayStatus1 = true;
+            flagRL1 = false;
         } else {
             document.getElementById("relay1img").src = "img/light_off.png";
             document.getElementById("rl1status").innerText = "OFF";
             relayStatus1 = false;
+            flagRL1 = false;
         }
     }
 
@@ -184,10 +188,12 @@ client.onMessageArrived = function (message) {
             document.getElementById("relay2img").src = "img/light_on.png";
             document.getElementById("rl2status").innerText = "ON";
             relayStatus2 = true;
+            flagRL2 = false;
         } else {
             document.getElementById("relay2img").src = "img/light_off.png";
             document.getElementById("rl2status").innerText = "OFF";
             relayStatus2 = false;
+            flagRL2 = false;
         }
     }
 
@@ -196,10 +202,12 @@ client.onMessageArrived = function (message) {
             document.getElementById("relay3img").src = "img/light_on.png";
             document.getElementById("rl3status").innerText = "ON";
             relayStatus3 = true;
+            flagRL3 = false;
         } else {
             document.getElementById("relay3img").src = "img/light_off.png";
             document.getElementById("rl3status").innerText = "OFF";
             relayStatus3 = false;
+            flagRL3 = false;
         }
     }
 
@@ -208,10 +216,12 @@ client.onMessageArrived = function (message) {
             document.getElementById("relay4img").src = "img/light_on.png";
             document.getElementById("rl4status").innerText = "ON";
             relayStatus4 = true;
+            flagRL4 = false;
         } else {
             document.getElementById("relay4img").src = "img/light_off.png";
             document.getElementById("rl4status").innerText = "OFF";
             relayStatus4 = false;
+            flagRL4 = false;
         }
     }
 
