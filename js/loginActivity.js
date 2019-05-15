@@ -1,28 +1,41 @@
 firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-        document.getElementById("user_div").style.display = "block";
-        document.getElementById("login_div").style.display = "none";
-        document.getElementById("resetPassword_div").style.display = "none";
-        document.getElementById("signup_div").style.display = "none";
-        doConnect();
+
+        if (user.emailVerified) {
+            document.getElementById("user_div").style.display = "block";
+            document.getElementById("login_div").style.display = "none";
+            document.getElementById("resetPassword_div").style.display = "none";
+            document.getElementById("signup_div").style.display = "none";
+            doConnect();
+        } else {
+
+            user.sendEmailVerification().then(function () {
+                window.alert("We have sent you a verification email, please verify your account!!");
+
+            }).catch(function (error) {
+                window.alert("please verify your account!!");
+            });
+
+            console.log("verificated:" + user.emailVerified);
+            firebase.auth().signOut();
+        }
+
     } else {
         // No user is signed in.
-
-        document.getElementById("user_div").style.display = "none";
-        document.getElementById("login_div").style.display = "block";
-        document.getElementById("resetPassword_div").style.display = "none";
-        document.getElementById("signup_div").style.display = "none";
+        signinLayout();
     }
 });
 
 function login() {
-    var userEmail = document.getElementById("username").value;
-    var userPassword = document.getElementById("password").value;
+    let userEmail = document.getElementById("username").value;
+    let userPassword = document.getElementById("password").value;
 
-    firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).catch(function (error) {
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPassword).then(() => {
+        doConnect();
+    }).catch(function (error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        let errorCode = error.code;
+        let errorMessage = error.message;
 
         window.alert("Error: " + errorMessage);
         // ...
@@ -31,27 +44,24 @@ function login() {
 }
 
 function signup() {
-    var userEmail = document.getElementById("signUpUsername").value;
-    var userPassword = document.getElementById("signUpPassword").value;
-    var signupCode = document.getElementById("signUpcode").value;
+    let userEmail = document.getElementById("signUpUsername").value;
+    let userPassword = document.getElementById("signUpPassword").value;
+    let signupCode = document.getElementById("signUpcode").value;
 
-    var docRef = db.collection("user").doc(signupCode);
+    let docRef = db.collection("user").doc(signupCode);
 
     docRef.get().then(function (doc) {
         if (doc.exists) {
-            var numberDevides = doc.data().devices;
+
             firebase.auth().createUserWithEmailAndPassword(userEmail, userPassword).then(() => {
 
-                window.alert('acc created');
             }).catch(function (error) {
                 // Handle Errors here.
-                var errorCode = error.code;
-                var errorMessage = error.message;
+                let errorMessage = error.message;
 
                 window.alert("Error: " + errorMessage);
                 // ...
             });
-
 
 
         } else {
@@ -64,14 +74,14 @@ function signup() {
 
 }
 
-function sendEmail() {
+function sendResetEmail() {
 
-    var userEmail = document.getElementById("fpusername").value;
+    let userEmail = document.getElementById("fpusername").value;
     firebase.auth().sendPasswordResetEmail(userEmail).then(() => {
         window.alert('Password reset email sent, check your inbox.');
     }).catch(function (error) {
         // Handle Errors here.
-        var errorMessage = error.message;
+        let errorMessage = error.message;
 
         window.alert("Error: " + errorMessage);
         // ...
@@ -89,15 +99,6 @@ function forgotPassword() {
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "none";
     document.getElementById("resetPassword_div").style.display = "block";
-    document.getElementById("signup_div").style.display = "none";
-
-}
-
-function backLogin() {
-
-    document.getElementById("user_div").style.display = "none";
-    document.getElementById("login_div").style.display = "block";
-    document.getElementById("resetPassword_div").style.display = "none";
     document.getElementById("signup_div").style.display = "none";
 
 }
