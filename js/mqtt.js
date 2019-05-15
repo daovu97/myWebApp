@@ -21,7 +21,7 @@ function doConnect() {
 
     // Connect the client, providing an onConnect callback
     client.connect({
-        timeout: 3,
+        timeout: 2,
         onSuccess: onConnect,
         useSSL: true,
         userName: user,
