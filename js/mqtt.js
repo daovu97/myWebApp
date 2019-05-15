@@ -24,7 +24,6 @@ function doConnect() {
         timeout: 3,
         onSuccess: onConnect,
         useSSL: true,
-        clearsection: true,
         userName: user,
         password: pass,
         onFailure: doFail
