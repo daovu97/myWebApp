@@ -1,9 +1,8 @@
 #login_div {
     display: none;
-    
 }
 
-#signup_div{
+#signup_div {
     display: none;
 }
 
@@ -19,13 +18,11 @@
     height: fit-content;
     -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-
 }
 
 #resetPassword_div {
     display: none;
 }
-
 
 #sensor {
     margin-left: auto;
@@ -40,7 +37,6 @@
 }
 
 #humiditysensor {
-
     float: right;
     margin-left: 100px;
     width: fit-content;
@@ -78,14 +74,12 @@
 
 .button:hover {
     transform: scale(0.97, 0.97);
-    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
-        -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
 }
 
 .button:active {
     transform: scale(0.9, 0.9);
-    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
-        -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
 }
 
 #connectStatus {
@@ -95,7 +89,6 @@
     margin-top: 5px;
     margin-right: auto;
     margin-left: auto;
-
 }
 
 #hder {
@@ -103,8 +96,8 @@
     height: fit-content;
     margin-left: 22%;
     margin-top: 10px;
-    
 }
-#device{
+
+#device {
     display: none;
 }

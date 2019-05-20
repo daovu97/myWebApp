@@ -1,6 +1,7 @@
-.pointer{
+.pointer {
     cursor: pointer;
 }
+
 .card {
     margin: 30px auto;
     width: 200px;
@@ -30,7 +31,6 @@
 }
 
 .card .card_title {
-
     font-family: sans-serif;
     font-weight: bold;
     font-size: 15px;
@@ -47,14 +47,12 @@
 
 .card:hover {
     transform: scale(0.97, 0.97);
-    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
-        -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
 }
 
 .card:active {
     transform: scale(0.9, 0.9);
-    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25),
-        -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
+    box-shadow: 5px 5px 30px 15px rgba(0, 0, 0, 0.25), -5px -5px 30px 15px rgba(0, 0, 0, 0.22);
 }
 
 .title-white {
