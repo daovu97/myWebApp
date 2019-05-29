@@ -1,10 +1,10 @@
-const host = "m16.cloudmqtt.com";
-const port = 31210;
+const host = "";
+const port = ;
 const part = '';
 const clientId = "Web_cliend";
 const qos = 0;
-const userMQTT = "ubukzoam";
-const passMQTT = "DK3eXPuJwnao";
+const userMQTT = "";
+const passMQTT = "";
 var flag = true;
 
 const reconnectTimeout = 1;
