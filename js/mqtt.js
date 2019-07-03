@@ -76,7 +76,7 @@ client.onConnectionLost = function (responseObject) {
     setTimeout(doConnect, Number(reconnectTimeout));
 }
 
-function feedBackControl(){
+function feedBackControl() {
     client.onMessageArrived = function (message) {
         if (flag) {
             document.getElementById("sensor").style.display = "block";
@@ -84,14 +84,14 @@ function feedBackControl(){
             document.getElementById("device").style.display = "none";
             flag = false;
         }
-    
-    
+
+
         let flagHum, flagTem, flagRL1, flagRL2, flagRL3, flagRL4;
-    
+
         switch (message.destinationName) {
-    
+
             case "ESP/temperature": {
-    
+
                 if (message.payloadString === subTemperature) {
                     flagTem = false;
                 } else {
@@ -101,7 +101,7 @@ function feedBackControl(){
             }
             break;
         case "ESP/humidity": {
-    
+
             if (message.payloadString === subHumidity) {
                 flagHum = false;
             } else {
@@ -110,9 +110,9 @@ function feedBackControl(){
             }
         }
         break;
-    
+
         case "ESPg/RL1": {
-    
+
             if (message.payloadString === subRelay1) {
                 flagRL1 = false;
             } else {
@@ -122,7 +122,7 @@ function feedBackControl(){
         }
         break;
         case "ESPg/RL2": {
-    
+
             if (message.payloadString === subRelay2) {
                 flagRL2 = false;
             } else {
@@ -132,7 +132,7 @@ function feedBackControl(){
         }
         break;
         case "ESPg/RL3": {
-    
+
             if (message.payloadString === subRelay3) {
                 flagRL3 = false;
             } else {
@@ -142,7 +142,7 @@ function feedBackControl(){
         }
         break;
         case "ESPg/RL4": {
-    
+
             if (message.payloadString === subRelay4) {
                 flagRL4 = false;
             } else {
@@ -152,21 +152,21 @@ function feedBackControl(){
         }
         break;
         }
-    
+
         if (flagTem) {
             document.getElementById("progressTem").className = "c100 p" + (message.payloadString - 5) + " orange";
             document.getElementById("temNumber").innerText = message.payloadString + "°C";
             flagTem = false;
         }
-    
+
         if (flagHum) {
             document.getElementById("progressHum").className = "c100 p" + message.payloadString + " green";
             document.getElementById("humNumber").innerText = message.payloadString + "%";
             flagHum = false;
         }
-    
+
         if (flagRL1) {
-    
+
             if (subRelay1 === "1") {
                 document.getElementById("relay1img").src = "img/light_on.png";
                 document.getElementById("rl1status").innerText = "ON";
@@ -179,7 +179,7 @@ function feedBackControl(){
                 flagRL1 = false;
             }
         }
-    
+
         if (flagRL2) {
             if (subRelay2 === "1") {
                 document.getElementById("relay2img").src = "img/light_on.png";
@@ -193,7 +193,7 @@ function feedBackControl(){
                 flagRL2 = false;
             }
         }
-    
+
         if (flagRL3) {
             if (subRelay3 === "1") {
                 document.getElementById("relay3img").src = "img/light_on.png";
@@ -207,7 +207,7 @@ function feedBackControl(){
                 flagRL3 = false;
             }
         }
-    
+
         if (flagRL4) {
             if (subRelay4 === "1") {
                 document.getElementById("relay4img").src = "img/light_on.png";
@@ -221,8 +221,8 @@ function feedBackControl(){
                 flagRL4 = false;
             }
         }
-    
-    
+
+
     }
 }
 

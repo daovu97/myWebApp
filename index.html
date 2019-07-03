@@ -32,7 +32,8 @@
                 <!-- Login Form -->
                 <form>
                     <input type="text" id="fpusername" class="fadeIn second" placeholder="email">
-                    <input type="button" value="Reset Password" onclick="sendResetEmail()" class="pointer fadeIn second">
+                    <input type="button" value="Reset Password" onclick="sendResetEmail()"
+                        class="pointer fadeIn second">
                     <input type="button" value="Back <<" onclick="signinLayout()" class="pointer fadeIn second">
                 </form>
 
@@ -189,7 +190,7 @@
     <script>
         // Initialize Firebase
         var config = {
-           
+
         };
         firebase.initializeApp(config);
         var db = firebase.firestore();
